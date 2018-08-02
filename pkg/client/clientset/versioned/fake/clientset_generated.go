@@ -1,5 +1,5 @@
 /*
-Copyright 2018 BlackRock, Inc.
+Copyright 2018 The Argo Project Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@ package fake
 
 import (
 	clientset "github.com/argoproj/argo-events/pkg/client/clientset/versioned"
-	argoprojv1alpha1 "github.com/argoproj/argo-events/pkg/client/clientset/versioned/typed/sensor/v1alpha1"
-	fakeargoprojv1alpha1 "github.com/argoproj/argo-events/pkg/client/clientset/versioned/typed/sensor/v1alpha1/fake"
+	argoprojv1alpha1 "github.com/argoproj/argo-events/pkg/client/clientset/versioned/typed/events/v1alpha1"
+	fakeargoprojv1alpha1 "github.com/argoproj/argo-events/pkg/client/clientset/versioned/typed/events/v1alpha1/fake"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/watch"
 	"k8s.io/client-go/discovery"

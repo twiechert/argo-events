@@ -1,5 +1,5 @@
 /*
-Copyright 2018 BlackRock, Inc.
+Copyright 2018 The Argo Project Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -23,8 +23,8 @@ import (
 	time "time"
 
 	versioned "github.com/argoproj/argo-events/pkg/client/clientset/versioned"
+	events "github.com/argoproj/argo-events/pkg/client/informers/externalversions/events"
 	internalinterfaces "github.com/argoproj/argo-events/pkg/client/informers/externalversions/internalinterfaces"
-	sensor "github.com/argoproj/argo-events/pkg/client/informers/externalversions/sensor"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
@@ -122,9 +122,9 @@ type SharedInformerFactory interface {
 	ForResource(resource schema.GroupVersionResource) (GenericInformer, error)
 	WaitForCacheSync(stopCh <-chan struct{}) map[reflect.Type]bool
 
-	Argoproj() sensor.Interface
+	Argoproj() events.Interface
 }
 
-func (f *sharedInformerFactory) Argoproj() sensor.Interface {
-	return sensor.New(f, f.namespace, f.tweakListOptions)
+func (f *sharedInformerFactory) Argoproj() events.Interface {
+	return events.New(f, f.namespace, f.tweakListOptions)
 }

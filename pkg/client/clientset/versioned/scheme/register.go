@@ -1,5 +1,5 @@
 /*
-Copyright 2018 BlackRock, Inc.
+Copyright 2018 The Argo Project Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ limitations under the License.
 package scheme
 
 import (
-	argoprojv1alpha1 "github.com/argoproj/argo-events/pkg/apis/sensor/v1alpha1"
+	argoprojv1alpha1 "github.com/argoproj/argo-events/pkg/apis/events/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"

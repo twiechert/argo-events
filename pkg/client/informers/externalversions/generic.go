@@ -1,5 +1,5 @@
 /*
-Copyright 2018 BlackRock, Inc.
+Copyright 2018 The Argo Project Authors.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ package externalversions
 import (
 	"fmt"
 
-	v1alpha1 "github.com/argoproj/argo-events/pkg/apis/sensor/v1alpha1"
+	v1alpha1 "github.com/argoproj/argo-events/pkg/apis/events/v1alpha1"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"
 	cache "k8s.io/client-go/tools/cache"
 )
@@ -52,8 +52,14 @@ func (f *genericInformer) Lister() cache.GenericLister {
 func (f *sharedInformerFactory) ForResource(resource schema.GroupVersionResource) (GenericInformer, error) {
 	switch resource {
 	// Group=argoproj.io, Version=v1alpha1
+	case v1alpha1.SchemeGroupVersion.WithResource("events"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Argoproj().V1alpha1().Events().Informer()}, nil
 	case v1alpha1.SchemeGroupVersion.WithResource("sensors"):
 		return &genericInformer{resource: resource.GroupResource(), informer: f.Argoproj().V1alpha1().Sensors().Informer()}, nil
+	case v1alpha1.SchemeGroupVersion.WithResource("triggers"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Argoproj().V1alpha1().Triggers().Informer()}, nil
+	case v1alpha1.SchemeGroupVersion.WithResource("wires"):
+		return &genericInformer{resource: resource.GroupResource(), informer: f.Argoproj().V1alpha1().Wires().Informer()}, nil
 
 	}
 
