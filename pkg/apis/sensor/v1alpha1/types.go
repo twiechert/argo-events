@@ -94,6 +94,8 @@ type SensorSpec struct {
 
 	// ImageVersion is the sensor image version to run
 	ImageVersion string `json:"imageVersion,omitempty" protobuf:"bytes,8,opt,name=imageVersion"`
+
+	SensorImage string `json:"sensorImage,omitempty" protobuf:"bytes,9,opt,name=sensorImage"`
 }
 
 // Signal describes a dependency

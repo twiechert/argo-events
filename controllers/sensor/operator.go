@@ -114,6 +114,11 @@ func (soc *sOperationCtx) operate() error {
 			envVars = append(envVars, soc.s.Spec.EnvVars...)
 		}
 
+		sensorImage := common.SensorImage
+		if soc.s.Spec.SensorImage != "" {
+			sensorImage = soc.s.Spec.SensorImage
+		}
+
 		if soc.s.Spec.ImageVersion == "" {
 			soc.s.Spec.ImageVersion = common.ImageVersionLatest
 		}
@@ -152,7 +157,7 @@ func (soc *sOperationCtx) operate() error {
 								Containers: []corev1.Container{
 									{
 										Name:            soc.s.Name,
-										Image:           fmt.Sprintf("%s:%s", common.SensorImage, soc.s.Spec.ImageVersion),
+										Image:           fmt.Sprintf("%s:%s", sensorImage, soc.s.Spec.ImageVersion),
 										ImagePullPolicy: soc.s.Spec.ImagePullPolicy,
 										Env:             envVars,
 									},
@@ -195,7 +200,7 @@ func (soc *sOperationCtx) operate() error {
 								Containers: []corev1.Container{
 									{
 										Name:            soc.s.Name,
-										Image:           common.SensorImage,
+										Image:           sensorImage,
 										ImagePullPolicy: soc.s.Spec.ImagePullPolicy,
 										Env:             envVars,
 									},
