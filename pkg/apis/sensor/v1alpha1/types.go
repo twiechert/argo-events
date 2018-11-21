@@ -96,6 +96,9 @@ type SensorSpec struct {
 	ImageVersion string `json:"imageVersion,omitempty" protobuf:"bytes,8,opt,name=imageVersion"`
 
 	SensorImage string `json:"sensorImage,omitempty" protobuf:"bytes,9,opt,name=sensorImage"`
+
+	// ImagePullPolicy determines the when the image should be pulled from docker repository
+	ImagePullSecrets []corev1.LocalObjectReference `json:"imagePullSecrets,omitempty" patchStrategy:"merge" patchMergeKey:"name" protobuf:"bytes,10,rep,name=imagePullSecrets"`
 }
 
 // Signal describes a dependency

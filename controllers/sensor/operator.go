@@ -154,6 +154,7 @@ func (soc *sOperationCtx) operate() error {
 								},
 							},
 							Spec: corev1.PodSpec{
+								ImagePullSecrets: soc.s.Spec.ImagePullSecrets,
 								Containers: []corev1.Container{
 									{
 										Name:            soc.s.Name,
@@ -197,6 +198,7 @@ func (soc *sOperationCtx) operate() error {
 								},
 							},
 							Spec: corev1.PodSpec{
+								ImagePullSecrets: soc.s.Spec.ImagePullSecrets,
 								Containers: []corev1.Container{
 									{
 										Name:            soc.s.Name,
