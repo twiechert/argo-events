@@ -236,7 +236,7 @@ func (goc *gwOperationCtx) createGatewayService() (*corev1.Service, error) {
 	gatewayService := &corev1.Service{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      common.DefaultGatewayServiceName(goc.gw.Name),
-			Namespace: "base",
+			Namespace: goc.gw.Namespace,
 			OwnerReferences: []metav1.OwnerReference{
 				*metav1.NewControllerRef(goc.gw, v1alpha1.SchemaGroupVersionKind),
 			},
