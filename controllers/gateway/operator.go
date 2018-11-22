@@ -164,9 +164,10 @@ func (goc *gwOperationCtx) operate() error {
 		//                          compliant events and dispatches them to sensors of interest.
 		gatewayDeployment := &appv1beta2.Deployment{
 			ObjectMeta: metav1.ObjectMeta{
-				Name:      common.DefaultGatewayDeploymentName(goc.gw.Name),
-				Namespace: goc.gw.Namespace,
-				Labels:    goc.gw.ObjectMeta.Labels,
+				Name:        common.DefaultGatewayDeploymentName(goc.gw.Name),
+				Annotations: goc.gw.Annotations,
+				Namespace:   goc.gw.Namespace,
+				Labels:      goc.gw.ObjectMeta.Labels,
 				OwnerReferences: []metav1.OwnerReference{
 					*metav1.NewControllerRef(goc.gw, v1alpha1.SchemaGroupVersionKind),
 				},
