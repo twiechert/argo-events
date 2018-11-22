@@ -147,8 +147,10 @@ func (soc *sOperationCtx) operate() error {
 						},
 						Template: corev1.PodTemplateSpec{
 							ObjectMeta: metav1.ObjectMeta{
-								Name:      common.DefaultSensorDeploymentName(soc.s.Name),
-								Namespace: soc.s.Name,
+								Name:        common.DefaultSensorDeploymentName(soc.s.Name),
+								Namespace:   soc.s.Name,
+								Annotations: soc.s.Annotations,
+
 								Labels: map[string]string{
 									common.LabelSensorName: soc.s.Name,
 								},
@@ -193,6 +195,7 @@ func (soc *sOperationCtx) operate() error {
 						Template: corev1.PodTemplateSpec{
 							ObjectMeta: metav1.ObjectMeta{
 								GenerateName: common.DefaultSensorJobName(soc.s.Name),
+								Annotations:  soc.s.Annotations,
 								Labels: map[string]string{
 									common.LabelSensorName: soc.s.Name,
 								},
